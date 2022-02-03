@@ -4,6 +4,7 @@ const errors = {
   nameAlreadyExist: 'Product already exists',
   quantityBlank: '"quantity" is required',
   quantityNotNumber: '"quantity" must be a number larger than or equal to 1',
+  productNotFound: 'Product not found',
 };
 
 const blank = (value) => (value === undefined);
