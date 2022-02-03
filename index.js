@@ -1,11 +1,12 @@
 require('dotenv').config();
 
 const express = require('express');
-const { create, getById, getAll } = require('./controllers/productsController');
+const { create, getById, getAll, update } = require('./controllers/productsController');
 const { 
   validadeName,
   validateQuantity, 
   validateIfNameAlreadyExist,
+  validateIfExist,
 } = require('./middlewares/productMiddlewares');
 
 const app = express();
@@ -17,7 +18,8 @@ app.get('/', (_request, response) => {
 });
 
 app.route('/products/:id')
-  .get(getById);
+  .get(getById)
+  .put(validadeName, validateQuantity, validateIfExist, update);
 
 app.route('/products')
   .post(validadeName, validateIfNameAlreadyExist, validateQuantity, create)

@@ -12,7 +12,7 @@ const create = async ({ name, quantity }) => {
   };
 };
 
-const getByName = async (name) => {
+const getByName = async ({ name }) => {
   const query = 'SELECT * FROM products WHERE name = ?';
   const [product] = await connection.execute(query, [name]);
   return product;
@@ -30,9 +30,21 @@ const getById = async ({ id }) => {
   return product[0];
 };
 
+const update = async ({ id, name, quantity }) => {
+  const query = 'UPDATE products SET name = ?, quantity = ? WHERE id = ?';
+  const [product] = await connection.execute(query, [name, quantity, id]);
+
+  return {
+    id: product.insertId,
+    name,
+    quantity,
+  };
+};
+
 module.exports = { 
   create,
   getByName,
   getAll,
   getById,
+  update,
 };
