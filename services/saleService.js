@@ -1,6 +1,6 @@
 const salesModel = require('../models/salesModel');
 
-const mapSales = (arraySales) => arraySales.map((sale) => ({ 
+const mapSales = (array) => array.map((sale) => ({ 
   productId: sale.product_id, quantity: sale.quantity, 
 }));
 
@@ -18,7 +18,19 @@ const createSale = async (arraySales) => {
   };
 };
 
+const getAll = async () => {
+  const allSales = await salesModel.getAll();
+  return allSales;
+};
+
+const getById = async (id) => {
+  const sales = await salesModel.getById(id);
+  return sales;
+};
+
 module.exports = {
   createSale,
   mapSales,
+  getAll,
+  getById,
 };
