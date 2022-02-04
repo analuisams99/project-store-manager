@@ -5,13 +5,13 @@ const create = async (req, res) => {
   
   const product = await productService.create({ name, quantity });
 
-  res.status(201).json(product);
+  return res.status(201).json(product);
 };
 
 const getAll = async (_req, res) => {
   const products = await productService.getAll();
   
-  res.status(200).json(products);
+  return res.status(200).json(products);
 };
 
 const getById = async (req, res) => {
@@ -20,7 +20,7 @@ const getById = async (req, res) => {
   
   if (!product) return res.status(404).json({ message: 'Product not found' });
   
-  res.status(200).json(product);
+  return res.status(200).json(product);
 };
 
 const update = async (req, res) => {
@@ -28,7 +28,7 @@ const update = async (req, res) => {
   const { name, quantity } = req.body;
   const product = await productService.update({ id, name, quantity });
 
-  res.status(200).json(product);
+  return res.status(200).json(product);
 };
 
 const remove = async (req, res) => {

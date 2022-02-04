@@ -1,5 +1,6 @@
 const schemas = require('../schemas');
 const productService = require('../services/productsService');
+// const saleService = require('../services/saleService');
 
 const validateName = (req, res, next) => {
   const { name } = req.body;
@@ -66,6 +67,14 @@ const validateSalesQuantity = (req, res, next) => {
   next();
 };
 
+// const validateSaleExist = async (req, res, next) => {
+//   const { id } = req.params;
+//   const saleId = await saleService.getById({ id });
+  
+//   if (!saleId) return res.status(404).json({ message: 'Sale not found' });
+//   next();
+// };
+
 module.exports = { 
   validateName,
   validateIfNameAlreadyExist,
@@ -73,4 +82,5 @@ module.exports = {
   validateIfExist,
   validateProductId,
   validateSalesQuantity,
+  // validateSaleExist,
 };

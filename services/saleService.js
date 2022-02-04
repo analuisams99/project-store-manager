@@ -28,9 +28,26 @@ const getById = async (id) => {
   return sales;
 };
 
+const update = async (saleId, sales) => {
+  await salesModel.update(saleId, sales.product_id, sales.quantity);
+  return { 
+    saleId, 
+    itemUpdated: [
+      { ...sales }], 
+  };
+};
+
+const remove = async (id) => {
+  const sale = await salesModel.getById(id);
+  await salesModel.remove(id);
+  return sale;
+};
+
 module.exports = {
   createSale,
   mapSales,
   getAll,
   getById,
+  update,
+  remove,
 };
