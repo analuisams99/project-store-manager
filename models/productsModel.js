@@ -46,6 +46,16 @@ const remove = async ({ id }) => {
   await connection.execute(query, [id]);
 };
 
+const increment = async (id, quantity) => {
+  const query = 'UPDATE products SET quantity = quantity + ? WHERE id = ?';
+  await connection.execute(query, [quantity, id]);
+};
+
+const decrement = async (id, quantity) => {
+  const query = 'UPDATE products SET quantity = quantity - ? WHERE id = ?';
+  await connection.execute(query, [quantity, id]);
+};
+
 module.exports = { 
   create,
   getByName,
@@ -53,4 +63,6 @@ module.exports = {
   getById,
   update,
   remove,
+  increment,
+  decrement,
 };
