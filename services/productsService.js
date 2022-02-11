@@ -15,8 +15,8 @@ const getAll = async () => {
   return products;
 };
 
-const getById = async ({ id }) => {
-  const product = await productsModel.getById({ id });
+const getById = async (id) => {
+  const product = await productsModel.getById(id);
   return product;
 };
 
@@ -26,7 +26,7 @@ const update = async ({ id, name, quantity }) => {
 };
 
 const remove = async ({ id }) => {
-  const product = await productsModel.getById({ id });
+  const product = await productsModel.getById(id);
   await productsModel.remove({ id });
   return product;
 };

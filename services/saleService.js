@@ -6,7 +6,7 @@ const mapSales = (array) => array.map((sale) => ({
 }));
 
 const quantityIncrement = async (sales) => {
-  Promise.all(
+  await Promise.all(
     sales.map(({ product_id: productId, quantity }) => (
       increment(productId, quantity)
     )),
@@ -14,7 +14,7 @@ const quantityIncrement = async (sales) => {
 };
 
 const quantityDecrement = async (sales) => {
-  Promise.all(
+  await Promise.all(
     sales.map(({ product_id: productId, quantity }) => (
       decrement(productId, quantity)
     )),

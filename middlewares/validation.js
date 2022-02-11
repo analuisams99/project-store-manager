@@ -1,6 +1,5 @@
 const schemas = require('../schemas');
 const productService = require('../services/productsService');
-// const saleService = require('../services/saleService');
 
 const validateName = (req, res, next) => {
   const { name } = req.body;
@@ -39,7 +38,7 @@ const validateQuantity = (req, res, next) => {
 
 const validateIfExist = async (req, res, next) => {
   const { id } = req.params;
-  const product = await productService.getById({ id });
+  const product = await productService.getById(id);
   
   if (!product) return res.status(404).json({ message: 'Product not found' });
   next();
@@ -66,12 +65,15 @@ const validateSalesQuantity = (req, res, next) => {
   }
   next();
 };
+// here
+// const validatesQuantityToSale = async (req, res, next) => {
+//   const arraySales = req.body;
+//   const validationQuantityToSale = await schemas.validatesQuantityToSale(arraySales);
 
-// const validateSaleExist = async (req, res, next) => {
-//   const { id } = req.params;
-//   const saleId = await saleService.getById({ id });
-  
-//   if (!saleId) return res.status(404).json({ message: 'Sale not found' });
+//   if (validationQuantityToSale) {
+//     const { code, message } = validationQuantityToSale;
+//     return res.status(code).json({ message }); 
+//   }
 //   next();
 // };
 
@@ -82,5 +84,5 @@ module.exports = {
   validateIfExist,
   validateProductId,
   validateSalesQuantity,
-  // validateSaleExist,
+  // validatesQuantityToSale,
 };

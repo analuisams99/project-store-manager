@@ -2,9 +2,13 @@ const saleService = require('../services/saleService');
 
 const createSale = async (req, res) => {
   const arraySales = req.body;
-  const { id } = await saleService.createSale(arraySales);
+  const newSale = await saleService.createSale(arraySales);
 
-  return res.status(201).json({ id, itemsSold: arraySales });
+  // if (newSale === 'error') { 
+  //   return res.status(422).json({ message: 'Such amount is not permitted to sell' }); 
+  // }
+
+  return res.status(201).json({ id: newSale.id, itemsSold: arraySales });
 };
 
 const getAll = async (_req, res) => {
